@@ -7,12 +7,14 @@ public class TextInfo {
 
     private Integer horizontalIndex;
 
-    private String charecter;
+    private String character;
 
-    private TextInfo(Integer verticalIndex, Integer horizontalIndex, String charecter) {
+    private Integer index;
+
+    private TextInfo(Integer verticalIndex, Integer horizontalIndex, String character) {
         this.horizontalIndex = horizontalIndex;
         this.verticalIndex = verticalIndex;
-        this.charecter = charecter;
+        this.character = character;
 
     }
 
@@ -30,6 +32,8 @@ public class TextInfo {
         return "TextInfo{" +
                 "verticalIndex=" + verticalIndex +
                 ", horizontalIndex=" + horizontalIndex +
+                ", character=" + character +
+                ", index=" + index +
                 '}';
     }
 
@@ -51,7 +55,14 @@ public class TextInfo {
         return verticalIndex;
     }
 
-    public String getCharecter() {
-        return charecter;
+    public String getCharacter() {
+        return character;
+    }
+    public Integer getIndex() {
+        return index;
+    }
+
+    public void setIndex(Integer index) {
+        this.index = index;
     }
 }

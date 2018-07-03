@@ -43,10 +43,6 @@ public class ReferenceText {
 
         private static final List<TextInfo> textInfoList = getTextInfoList();
 
-        /**
-         *
-         * @return
-         */
         private static Map<String, TextInfo> getRefrenceTextMap() {
             Map<String, TextInfo> referenceTextMap = new LinkedHashMap<>();
             IntStream.range(0, refrenceTextList.size())
@@ -63,8 +59,13 @@ public class ReferenceText {
 
         private static final List<TextInfo> getTextInfoList() {
             List<TextInfo> textInfoList = new ArrayList<>();
-//            referenceTextMap.forEach();
-            return null;
+            referenceTextMap.forEach((letter, textInfo) -> {
+                textInfoList.add(textInfo);
+                textInfo.setIndex(textInfoList.size() - 1);
+            });
+            LOGGER.info(textInfoList.toString());
+            LOGGER.info(referenceTextMap.toString());
+            return textInfoList;
         }
     }
 }
