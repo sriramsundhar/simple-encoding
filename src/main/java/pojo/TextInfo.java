@@ -4,11 +4,16 @@ import java.util.Objects;
 
 public class TextInfo {
     private Integer verticalIndex;
+
     private Integer horizontalIndex;
 
-    private TextInfo(Integer verticalIndex, Integer horizontalIndex) {
+    private String charecter;
+
+    private TextInfo(Integer verticalIndex, Integer horizontalIndex, String charecter) {
         this.horizontalIndex = horizontalIndex;
         this.verticalIndex = verticalIndex;
+        this.charecter = charecter;
+
     }
 
     @Override
@@ -34,7 +39,19 @@ public class TextInfo {
         return Objects.hash(verticalIndex, horizontalIndex);
     }
 
-    public static TextInfo getInstance(Integer verticalIndex, Integer horizontalIndex) {
-        return new TextInfo(verticalIndex, horizontalIndex);
+    public static TextInfo getInstance(Integer verticalIndex, Integer horizontalIndex, String charecter) {
+        return new TextInfo(verticalIndex, horizontalIndex, charecter);
+    }
+
+    public Integer getHorizontalIndex() {
+        return horizontalIndex;
+    }
+
+    public Integer getVerticalIndex() {
+        return verticalIndex;
+    }
+
+    public String getCharecter() {
+        return charecter;
     }
 }
