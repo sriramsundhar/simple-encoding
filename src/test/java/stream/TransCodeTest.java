@@ -34,15 +34,17 @@ public class TransCodeTest {
         assertEquals("Transformed string is", ",mn", transCode.verticalTranscode(InputText.getInstance("876")).getInputString());
         assertEquals("Transformed string is", "fgh", transCode.verticalTranscode(InputText.getInstance("RTY")).getInputString());
         assertEquals("Transformed string is", " `\\", transCode.verticalTranscode(InputText.getInstance(" `\\")).getInputString());
+
     }
 
     @Test
     public void shiftTranscode() {
-        assertEquals("Transformed string is", "t", transCode.shiftTranscode(InputText.getInstance(2, "e")).getInputString());
-        assertEquals("Transformed string is", "q", transCode.shiftTranscode(InputText.getInstance(-2, "e")).getInputString());
-        assertEquals("Transformed string is", "e", transCode.shiftTranscode(InputText.getInstance(39, "e")).getInputString());
-        assertEquals("Transformed string is", "e", transCode.shiftTranscode(InputText.getInstance(-39, "e")).getInputString());
-        assertEquals("Transformed string is", "t", transCode.shiftTranscode(InputText.getInstance(41, "e")).getInputString());
-        assertEquals("Transformed string is", "q", transCode.shiftTranscode(InputText.getInstance(-41, "e")).getInputString());
+        assertEquals("Transformed string is", "t", transCode.shiftTranscode(InputText.getInstance("e", 1), 2).getInputString());
+        assertEquals("Transformed string is", "q", transCode.shiftTranscode(InputText.getInstance("e", 1), -2).getInputString());
+        assertEquals("Transformed string is", "e", transCode.shiftTranscode(InputText.getInstance("e", 1), 39).getInputString());
+        assertEquals("Transformed string is", "e", transCode.shiftTranscode(InputText.getInstance("e", 1), -39).getInputString());
+        assertEquals("Transformed string is", "t", transCode.shiftTranscode(InputText.getInstance("e", 1), 41).getInputString());
+        assertEquals("Transformed string is", "q", transCode.shiftTranscode(InputText.getInstance("e", 1), -41).getInputString());
+        assertEquals("Transformed string is", "v5.,s", transCode.shiftTranscode(InputText.getInstance("olfd7", 1), 15).getInputString());
     }
 }

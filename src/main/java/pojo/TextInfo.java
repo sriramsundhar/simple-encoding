@@ -2,14 +2,12 @@ package pojo;
 
 import java.util.Objects;
 
-public class TextInfo {
+public class TextInfo extends Info {
     private Integer verticalIndex;
 
     private Integer horizontalIndex;
 
     private String character;
-
-    private Integer index;
 
     private TextInfo(Integer verticalIndex, Integer horizontalIndex, String character) {
         this.horizontalIndex = horizontalIndex;
@@ -33,7 +31,7 @@ public class TextInfo {
                 "verticalIndex=" + verticalIndex +
                 ", horizontalIndex=" + horizontalIndex +
                 ", character=" + character +
-                ", index=" + index +
+                ", index=" + this.getIndex() +
                 '}';
     }
 
@@ -57,12 +55,5 @@ public class TextInfo {
 
     public String getCharacter() {
         return character;
-    }
-    public Integer getIndex() {
-        return index;
-    }
-
-    public void setIndex(Integer index) {
-        this.index = index;
     }
 }

@@ -16,14 +16,14 @@ public class ReferenceTextTest {
     Map<String, TextInfo> referenceTextMap = null;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         ReferenceText referenceText = new ReferenceText();
         refrenceTextList = referenceText.getRefrenceTextList();
         referenceTextMap = referenceText.getRefrenceTextMap();
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
         refrenceTextList = null;
         referenceTextMap = null;
     }

@@ -31,8 +31,5 @@ public class FileSource {
 
     public static Source<ByteString, NotUsed> getInstance (String path) {
         return new FileSource(path).getFileSource();
-//                .map(byteString -> {
-//                    return byteString.toString();
-//                });
     }
 }

@@ -63,8 +63,6 @@ public class ReferenceText {
                 textInfoList.add(textInfo);
                 textInfo.setIndex(textInfoList.size() - 1);
             });
-            LOGGER.info(textInfoList.toString());
-            LOGGER.info(referenceTextMap.toString());
             return textInfoList;
         }
     }
