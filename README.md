@@ -35,10 +35,10 @@ Java (Java 8 compatible) program that performs a simple encoding of a large volu
  * [Docker](https://docs.docker.com/install/)
  * [Gradle](https://gradle.org/install/)
  
- ### Building
+ ### Build and Test
  ```ShellSession
  gradle clean
- gradle shadowJar
+ gradel build
  ```
  
  ### Configuration
@@ -51,5 +51,7 @@ Java (Java 8 compatible) program that performs a simple encoding of a large volu
  
   ### Running
   ```ShellSession
+  gradle clean
+  gradle shadowJar
   docker-compose up
   ```
