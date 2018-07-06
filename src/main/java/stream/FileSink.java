@@ -16,9 +16,11 @@ import java.util.concurrent.CompletionStage;
 
 public class FileSink {
 
-    final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("'stream-'yyyy-MM-dd_HH'.log'");
+    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("'stream-'yyyy-MM-dd_HH'.log'");
 
-    final Path destinationDir = FileSystems.getDefault().getPath("sampleFiles/output");
+    private final String outputFolder = (System.getenv("OUTPUT_FOLDER") == null) ? "sampleFiles/output" : System.getenv("OUTPUT_FOLDER");
+
+    private final Path destinationDir = FileSystems.getDefault().getPath(outputFolder);
 
     private Creator<Function<ByteString, Optional<Path>>> timeBasedPathCreator =
             () -> {

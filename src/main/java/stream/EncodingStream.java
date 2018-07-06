@@ -12,18 +12,24 @@ import transformation.TransformationInfo;
 
 import java.util.List;
 import java.util.concurrent.CompletionStage;
-import java.util.logging.Logger;
+
 
 public class EncodingStream {
     final ActorSystem system = ActorSystem.create();
     final Materializer materializer = ActorMaterializer.create(system);
+    private String inputFile;
 
-    private final Logger LOGGER = Logger.getLogger(TransCode.class.getName());
-
+    public EncodingStream() {
+        if(System.getenv("SOURCE_FILE") == null) {
+            inputFile = "sampleFiles/inputSource.txt";
+        } else {
+            inputFile = System.getenv("SOURCE_FILE");
+        }
+    }
 
     public void createEncodingStreams(){
         CompletionStage<Done> completion =
-            FileSource.getInstance("sampleFiles/inputSource.txt")
+            FileSource.getInstance(this.inputFile)
                 .via(FlowComponents.byteStringToInputText())
                 .via(getFlowComponents())
                 .via(FlowComponents.stringToByteString())
@@ -36,9 +42,9 @@ public class EncodingStream {
 
 
     private Flow<InputText, InputText, NotUsed> getFlowComponents() {
-        List<EncodingInfo> encodingInfos = TransformationInfo.getInstance().getEncodingInfos();
+        List<EncodingInfo> encodingInfoList = TransformationInfo.getInstance().getEncodingInfos();
         Flow<InputText, InputText, NotUsed> flowComponents = null;
-        for(EncodingInfo encodingInfo: encodingInfos) {
+        for(EncodingInfo encodingInfo: encodingInfoList) {
             if(flowComponents == null) {
                 flowComponents = encodingInfo.getEncodingType().getFlow();
             } else {

@@ -1,5 +1,8 @@
 package pojo;
 
+/**
+ * Pojo passed around by the flow components
+ */
 public class InputText {
     private Integer offset;
 

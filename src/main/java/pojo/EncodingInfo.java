@@ -1,5 +1,8 @@
 package pojo;
 
+/**
+ * This object hosts the details about encoding
+ */
 public class EncodingInfo {
 
     private EncodingType encodingType;

@@ -41,8 +41,8 @@ public class TextInfo extends Info {
         return Objects.hash(verticalIndex, horizontalIndex);
     }
 
-    public static TextInfo getInstance(Integer verticalIndex, Integer horizontalIndex, String charecter) {
-        return new TextInfo(verticalIndex, horizontalIndex, charecter);
+    public static TextInfo getInstance(Integer verticalIndex, Integer horizontalIndex, String character) {
+        return new TextInfo(verticalIndex, horizontalIndex, character);
     }
 
     public Integer getHorizontalIndex() {

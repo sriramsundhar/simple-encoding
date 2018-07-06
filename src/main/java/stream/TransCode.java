@@ -3,7 +3,6 @@ package stream;
 import encoding.ReferenceText;
 import pojo.InputText;
 import pojo.TextInfo;
-import transformation.TransformationInfo;
 
 import java.util.logging.Logger;
 
@@ -17,6 +16,7 @@ public class TransCode {
      * @return @{@link InputText} for another flow or sink
      */
     public InputText horizontalTransCode(InputText input) {
+        LOGGER.info("horizontalTransCode");
         StringBuilder sb = new StringBuilder();
         LOGGER.fine(refText.getRefrenceTextMap().toString());
         input.getInputString().chars()
@@ -30,7 +30,7 @@ public class TransCode {
                 }
                 LOGGER.fine("sb: " + sb.toString());
             });
-        LOGGER.info("horizontal transform: "+ sb.toString());
+        LOGGER.fine("Input: "+ input.getInputString() + " horizontal transform: "+ sb.toString());
         return InputText.getInstance(sb.toString(), input.getOffset()+1);
     }
 
@@ -40,6 +40,7 @@ public class TransCode {
      * @return @{@link InputText} for another flow or sink
      */
     public InputText verticalTranscode(InputText input) {
+        LOGGER.info("vertical transcode");
         StringBuilder sb = new StringBuilder();
         input.getInputString().chars()
             .forEach(intStream -> {
@@ -51,7 +52,7 @@ public class TransCode {
                     sb.append(refText.getRefrenceTextList().get(3-textInfo.getVerticalIndex()).get(textInfo.getHorizontalIndex()));
                 }
             });
-        LOGGER.info("horizontal transform: "+ sb.toString());
+        LOGGER.fine("Input: "+ input.getInputString() + " vertical transform: "+ sb.toString());
         return InputText.getInstance(sb.toString(), input.getOffset()+1);
     }
 
@@ -61,9 +62,10 @@ public class TransCode {
      * @return @{@link InputText} for another flow or sink
      */
     public InputText shiftTranscode(InputText input, Integer shift) {
-        LOGGER.info("getOffset: "+input.getOffset());
+        LOGGER.fine("getOffset: "+input.getOffset());
         LOGGER.info("shift: "+shift);
         StringBuilder sb = new StringBuilder();
+
         input.getInputString().chars()
             .forEach(intStream -> {
                 TextInfo textInfo = getStringForIntStream((char)intStream);
@@ -71,15 +73,16 @@ public class TransCode {
                     sb.append(textInfo.getCharacter());
                 } else {
                     LOGGER.fine(textInfo.toString());
-                    Integer netOffset = (textInfo.getIndex() + shift) % (refText.getTextInfoList().size() - 1);
+                    Integer netOffset = (textInfo.getIndex() + shift) % refText.getTextInfoList().size();
                     if(netOffset < 0) {
-                        netOffset = netOffset + (refText.getTextInfoList().size() - 1);
+                        netOffset = netOffset + (refText.getTextInfoList().size());
                     }
+                    LOGGER.fine("netOffset: "+netOffset);
                     sb.append(refText.getTextInfoList().get(netOffset).getCharacter());
 
                 }
             });
-        LOGGER.info("Shift transform: "+ sb.toString());
+        LOGGER.fine("Input: "+ input.getInputString() + " Shift transform: "+ sb.toString() + " shift: "+ shift);
         return InputText.getInstance(sb.toString(), input.getOffset()+1);
     }
 

@@ -1,0 +1,12 @@
+---
+version: '3'
+services:
+  encoding:
+    container_name: encoding
+    build: .
+    volumes:
+      - ./sampleFiles:/opt/app/sampleFiles
+    environment:
+      SOURCE_FILE: '/opt/app/sampleFiles/inputSource.txt'
+      TRANSFORMATION_FILE: '/opt/app/sampleFiles/encoding.txt'
+      OUTPUT_FOLDER: '/opt/app/sampleFiles/output'

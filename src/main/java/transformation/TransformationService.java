@@ -12,18 +12,23 @@ import java.util.stream.Stream;
 
 public class TransformationService {
 
-    private final String TRANSFORMATION_SEQUENCE = "sampleFiles/encoding.txt";
     /**
      * Get Transformation sequence from file
      * @return Transformation sequence
      */
     public List<String> getTransformationSequenceFromFileSystem() {
+        String transformationSequence;
+        if(System.getenv("TRANSFORMATION_FILE") == null) {
+            transformationSequence = "sampleFiles/encoding.txt";
+        } else {
+            transformationSequence = System.getenv("TRANSFORMATION_FILE");
+        }
 
         //read file into stream, try-with-resources
         StringBuilder sb = new StringBuilder();
 
         //Assume that encoding string will be small
-        try (Stream<String> stream = Files.lines(Paths.get(TRANSFORMATION_SEQUENCE))) {
+        try (Stream<String> stream = Files.lines(Paths.get(transformationSequence))) {
 
             stream.forEach(sb::append);
 
