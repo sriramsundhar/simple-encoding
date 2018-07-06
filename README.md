@@ -16,7 +16,8 @@ Java (Java 8 compatible) program that performs a simple encoding of a large volu
  This transformation will flip all columns of the keyboard vertically (e.g., the 1
  will swap with the z, the q with the a, the 2 with the x, etc.)
  
- ###Shift
+ ### Shift
+ 
  This transformation should take in an integer N and perform a linear shift of
  the keyboard. Each key should shift N places to its right if N > 0 (and likewise
  to the left if N < 0). If a key would move past its current row then it should shift
