@@ -8,19 +8,14 @@ import transformation.TransformationInfo;
 
 public class FlowComponents {
 
-    public static Flow<ByteString, InputText, NotUsed> byteStringToInputText() {
-        return Flow.of(ByteString.class)
-            .map(v -> InputText.getInstance(v.utf8String(),0));
-    }
-
-    public static Flow<ByteString, String, NotUsed> byteStringToString() {
-        return Flow.of(ByteString.class)
-                .map(v -> v.utf8String());
+    public static Flow<String, InputText, NotUsed> stringToInputText() {
+        return Flow.of(String.class)
+            .map(v -> InputText.getInstance(v,0));
     }
 
     public static Flow<InputText, ByteString, NotUsed> stringToByteString() {
         return Flow.of(InputText.class)
-            .map(v -> ByteString.fromString(v.getInputString()));
+            .map(v -> ByteString.fromString(v.getInputString() + "\n"));
     }
 
     public static Flow<InputText, InputText, NotUsed> horizontalTransformFlow() {

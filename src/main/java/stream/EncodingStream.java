@@ -30,7 +30,7 @@ public class EncodingStream {
     public void createEncodingStreams(){
         CompletionStage<Done> completion =
             FileSource.getInstance(this.inputFile)
-                .via(FlowComponents.byteStringToInputText())
+                .via(FlowComponents.stringToInputText())
                 .via(getFlowComponents())
                 .via(FlowComponents.stringToByteString())
                 .runWith(FileSink.getSink(), materializer);

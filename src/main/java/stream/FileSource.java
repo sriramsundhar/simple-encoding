@@ -16,20 +16,20 @@ public class FileSource {
 
     private String fileName;
 
-    private final Source<ByteString, NotUsed> lines;
+    private final Source<String, NotUsed> lines;
 
 
     private FileSource(String fileName) {
         this.fileName = fileName;
-        lines = akka.stream.alpakka.file.javadsl.FileTailSource.create(
-                fs.getPath(fileName),8192, 0, pollingInterval);
+        lines = akka.stream.alpakka.file.javadsl.FileTailSource.createLines(
+                fs.getPath(this.fileName), maxLineSize, pollingInterval);
     }
 
-    public Source<ByteString, NotUsed> getFileSource() {
+    public Source<String, NotUsed> getFileSource() {
         return lines;
     }
 
-    public static Source<ByteString, NotUsed> getInstance (String path) {
+    public static Source<String, NotUsed> getInstance (String path) {
         return new FileSource(path).getFileSource();
     }
 }
